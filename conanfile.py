@@ -1,6 +1,6 @@
-from conans import CMake, ConanFile, AutoToolsBuildEnvironment, tools
+from conans import CMake, ConanFile, tools
 import os
-import shutil
+
 
 class OpenALConan(ConanFile):
     name = "openal"
@@ -15,10 +15,10 @@ class OpenALConan(ConanFile):
     license="MIT License"
     description="OpenAL Soft is a software implementation of the OpenAL 3D audio API."
 
-    #def system_requirements(self):
-    #    if self.settings.os == "Linux":
-    #        installer = tools.SystemPackageTool()
-    #        installer.install("libasound2-dev")
+
+    def requirements(self):
+        if self.settings.os == "Linux":
+            self.requires("libalsa/1.1.5@conan/testing")
 
     def source(self):
         zip_name = "%s-soft-%s.tar.gz" % (self.name, self.version)
