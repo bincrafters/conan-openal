@@ -8,12 +8,8 @@ linux: &linux
 osx: &osx
    os: osx
    language: generic
-env:
-   global:
-     - CONAN_REMOTES: https://api.bintray.com/conan/conan-community/conan # REMOVE THIS WHEN MERGED TO BINCRAFTERS
 matrix:
    include:
-
       - <<: *linux
         env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
       - <<: *linux
