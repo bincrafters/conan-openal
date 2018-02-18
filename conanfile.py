@@ -42,3 +42,4 @@ class OpenALConan(ConanFile):
             self.cpp_info.libs = ["OpenAL32"]
         else:
             self.cpp_info.libs = ["openal"]
+        self.cpp_info.includedirs = ["include", "include/AL"]
