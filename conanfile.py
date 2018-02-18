@@ -33,12 +33,11 @@ class OpenALConan(ConanFile):
         cmake.install()
 
     def package(self):
-        self.copy("*", dst="include", src="install/include")
-        self.copy("*", dst="lib", src="install/lib", links=True)
-        self.copy("*", dst="bin", src="install/bin")
-
+        pass
+        
     def package_info(self):
         if self.settings.os == "Windows":
             self.cpp_info.libs = ["OpenAL32"]
         else:
             self.cpp_info.libs = ["openal"]
+        self.cpp_info.includedirs = ["include", "include/AL"]
