@@ -34,8 +34,6 @@ class OpenALConan(ConanFile):
 
     def package(self):
         self.copy("*", dst="include", src="install/include")
-        self.copy("*", dst="lib", src="install/lib", links=True)
-        self.copy("*", dst="bin", src="install/bin")
 
     def package_info(self):
         if self.settings.os == "Windows":
