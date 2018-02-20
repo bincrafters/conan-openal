@@ -14,7 +14,7 @@ class OpenALConan(ConanFile):
     source_subfolder = "source_subfolder"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}
-    default_options = "shared=True"
+    default_options = "shared=False"
 
     def requirements(self):
         if self.settings.os == "Linux":
