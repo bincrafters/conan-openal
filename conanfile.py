@@ -38,9 +38,6 @@ class OpenALConan(ConanFile):
         cmake.build()
         cmake.install()
 
-    def package(self):
-        pass
-        
     def package_info(self):
         if self.settings.os == "Windows":
             self.cpp_info.libs = ["OpenAL32"]
