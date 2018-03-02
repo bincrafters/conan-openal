@@ -36,13 +36,16 @@ class OpenALConan(ConanFile):
         cmake = CMake(self)
         if self.settings.compiler != 'Visual Studio':
             cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
+        cmake.definitions['LIBTYPE'] = 'SHARED' if self.options.shared else 'STATIC'
         cmake.configure()
         cmake.build()
         cmake.install()
 
     def package_info(self):
         if self.settings.os == "Windows":
-            self.cpp_info.libs = ["OpenAL32"]
+            self.cpp_info.libs = ["OpenAL32", 'winmm']
         else:
             self.cpp_info.libs = ["openal"]
         self.cpp_info.includedirs = ["include", "include/AL"]
+        if not self.options.shared:
+            self.cpp_info.defines.append('AL_LIBTYPE_STATIC')
