@@ -20,6 +20,7 @@ class OpenALConan(ConanFile):
     def configure(self):
         if self.settings.compiler == 'Visual Studio':
             del self.options.fPIC
+        del self.settings.compiler.libcxx
 
     def requirements(self):
         if self.settings.os == "Linux":
