@@ -1,6 +1,7 @@
 from conans import CMake, ConanFile, tools
 import os
 
+
 class OpenALConan(ConanFile):
     name = "openal"
     version = "1.18.2"
