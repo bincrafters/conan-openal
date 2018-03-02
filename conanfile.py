@@ -49,7 +49,7 @@ class OpenALConan(ConanFile):
         if self.settings.os == 'Linux':
             self.cpp_info.libs.append('m')
         elif self.settings.os == 'Macos':
-            frameworks = ['AudioToolbox']
+            frameworks = ['AudioToolbox', 'CoreAudio']
             for framework in frameworks:
                 self.cpp_info.exelinkflags.append("-framework %s" % framework)
             self.cpp_info.sharedlinkflags = self.cpp_info.exelinkflags
