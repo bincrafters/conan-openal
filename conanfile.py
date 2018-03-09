@@ -18,7 +18,7 @@ class OpenALConan(ConanFile):
     default_options = "shared=False", "fPIC=True"
 
     def configure(self):
-        if self.settings.compiler == 'Visual Studio':
+        if self.settings.os == 'Windows':
             del self.options.fPIC
         del self.settings.compiler.libcxx
 
@@ -40,6 +40,9 @@ class OpenALConan(ConanFile):
         cmake.configure()
         cmake.build()
         cmake.install()
+
+    def package(self):
+        self.copy("*COPYING", dst="licenses", keep_path=False, ignore_case=True)
 
     def package_info(self):
         if self.settings.os == "Windows":
