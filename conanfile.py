@@ -54,7 +54,7 @@ class OpenALConan(ConanFile):
         else:
             self.cpp_info.libs = ["openal"]
         if self.settings.os == 'Linux':
-            self.cpp_info.libs.append('m')
+            self.cpp_info.libs.extend(['dl', 'm'])
         elif self.settings.os == 'Macos':
             frameworks = ['AudioToolbox', 'CoreAudio']
             for framework in frameworks:
