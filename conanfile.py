@@ -8,6 +8,8 @@ class OpenALConan(ConanFile):
     md5 = "fa2cb3df766ab5976c86efbcc1d24d68"
     description = "OpenAL Soft is a software implementation of the OpenAL 3D audio API."
     url = "http://github.com/bincrafters/conan-openal"
+    homepage = "https://www.openal.org/"
+    author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
@@ -35,7 +37,7 @@ class OpenALConan(ConanFile):
             tools.replace_in_file(os.path.join(self.source_subfolder, 'CMakeLists.txt'),
                                   'CHECK_INCLUDE_FILES("windows.h;mmsystem.h" HAVE_MMSYSTEM_H -D_WIN32_WINNT=0x0502)',
                                   'CHECK_INCLUDE_FILES("windows.h;mmsystem.h" HAVE_MMSYSTEM_H)')
-        
+
     def build(self):
         cmake = CMake(self)
         if self.settings.compiler != 'Visual Studio':
