@@ -5,7 +5,7 @@ import os
 class OpenALConan(ConanFile):
     name = "openal"
     version = "1.19.0"
-    md5 = "fa2cb3df766ab5976c86efbcc1d24d68"
+    md5 = "a98737cc8fe65eb9c91b82c719c6465f"
     description = "OpenAL Soft is a software implementation of the OpenAL 3D audio API."
     url = "http://github.com/bincrafters/conan-openal"
     homepage = "https://www.openal.org/"
