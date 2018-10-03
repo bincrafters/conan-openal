@@ -33,10 +33,6 @@ class OpenALConan(ConanFile):
         tools.get("{0}/archive/openal-soft-{1}.tar.gz".format(source_url, self.version), self.md5)
         extracted_dir = "openal-soft-openal-soft-" + self.version
         os.rename(extracted_dir, self.source_subfolder)
-        if self.settings.os == 'Windows':
-            tools.replace_in_file(os.path.join(self.source_subfolder, 'CMakeLists.txt'),
-                                  'CHECK_INCLUDE_FILES("windows.h;mmsystem.h" HAVE_MMSYSTEM_H -D_WIN32_WINNT=0x0502)',
-                                  'CHECK_INCLUDE_FILES("windows.h;mmsystem.h" HAVE_MMSYSTEM_H)')
 
     def build(self):
         cmake = CMake(self)
