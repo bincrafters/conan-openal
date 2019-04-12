@@ -1,10 +1,10 @@
 ## Package Status
 
-| Bintray | Windows | Linux & macOS | 
+| Bintray | Windows | Linux & macOS |
 |:--------:|:---------:|:-----------------:|
-|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/openal%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/openal%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-openal?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-openal)|[![Build Status](https://travis-ci.org/bincrafters/conan-openal.svg)](https://travis-ci.org/bincrafters/conan-openal)|
+|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/openal%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/openal%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-openal?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-openal)|[![Build Status](https://travis-ci.com/bincrafters/conan-openal.svg)](https://travis-ci.com/bincrafters/conan-openal)|
 
-## Conan.io Information
+## Conan Information
 
 Bincrafters packages can be found in the following public Conan repository:
 
@@ -32,7 +32,7 @@ This GIT repository is managed by the Bincrafters team and holds files related t
 
 Bincrafters packages are hosted on [Bintray](https://bintray.com) and contain Open-Source software which is licensed by the software's maintainers and NOT Bincrafters.  For each Open-Source package published by Bincrafters, the packaging process obtains the required license files along with the original source files from the maintainer, and includes these license files in the generated Conan packages.
 
-The contents of this GIT repository are completely separate from the software being packaged and therefor licensed separately.  The license for all files contained in this GIT repository are defined in the [LICENSE.md](LICENSE.md) file in this repository.  The licenses included with all Conan packages published by Bincrafters can be found in the Conan package directories in the following locations, relative to the Conan Cache root (`~/.conan` by default):
+The contents of this GIT repository are completely separate from the software being packaged and therefore licensed separately.  The license for all files contained in this GIT repository are defined in the [LICENSE.md](LICENSE.md) file in this repository.  The licenses included with all Conan packages published by Bincrafters can be found in the Conan package directories in the following locations, relative to the Conan Cache root (`~/.conan` by default):
 
 ### License(s) for packaged software:
 

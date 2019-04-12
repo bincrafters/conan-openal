@@ -5,19 +5,22 @@ import os
 class OpenALConan(ConanFile):
     name = "openal"
     version = "1.19.0"
-    md5 = "a98737cc8fe65eb9c91b82c719c6465f"
     description = "OpenAL Soft is a software implementation of the OpenAL 3D audio API."
+    topics = ("conan", "openal", "audio", "api")
     url = "http://github.com/bincrafters/conan-openal"
-    homepage = "https://www.openal.org/"
+    homepage = "https://www.openal.org"
     author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
     generators = "cmake"
-    source_subfolder = "source_subfolder"
+
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = "shared=False", "fPIC=True"
+    default_options = {'shared': False, 'fPIC': True}
+
+    _source_subfolder = "source_subfolder"
+    _build_subfolder = "build_subfolder"
 
     def configure(self):
         if self.settings.os == 'Windows':
@@ -30,23 +33,28 @@ class OpenALConan(ConanFile):
 
     def source(self):
         source_url = "https://github.com/kcat/openal-soft"
-        tools.get("{0}/archive/openal-soft-{1}.tar.gz".format(source_url, self.version), self.md5)
+        sha256 = "bb26bc1d40010f059b3cffd336a09bf07f428b1115f00869ff995eb094a382b9"
+        tools.get("{0}/archive/openal-soft-{1}.tar.gz".format(source_url, self.version), sha256=sha256)
         extracted_dir = "openal-soft-openal-soft-" + self.version
-        os.rename(extracted_dir, self.source_subfolder)
+        os.rename(extracted_dir, self._source_subfolder)
 
-    def build(self):
+    def _configure_cmake(self):
         cmake = CMake(self)
-        if self.settings.compiler != 'Visual Studio':
-            cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
         cmake.definitions['LIBTYPE'] = 'SHARED' if self.options.shared else 'STATIC'
         cmake.definitions['ALSOFT_UTILS'] = False
         cmake.definitions['ALSOFT_EXAMPLES'] = False
         cmake.definitions['ALSOFT_TESTS'] = False
-        cmake.configure()
+        cmake.configure(build_folder=self._build_subfolder)
+        return cmake
+
+    def build(self):
+        cmake = self._configure_cmake()
         cmake.build()
-        cmake.install()
 
     def package(self):
+        self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
+        cmake = self._configure_cmake()
+        cmake.install()
         self.copy("*COPYING", dst="licenses", keep_path=False, ignore_case=True)
 
     def package_info(self):
