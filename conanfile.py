@@ -40,7 +40,7 @@ class OpenALConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        if self.settings.compiler != 'Visual Studio':
+        if self.settings.os != "Windows":
             cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
         cmake.definitions['LIBTYPE'] = 'SHARED' if self.options.shared else 'STATIC'
         cmake.configure()
