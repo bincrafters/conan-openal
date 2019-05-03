@@ -14,10 +14,10 @@ class OpenALConan(ConanFile):
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
     generators = "cmake"
-    source_subfolder = "source_subfolder"
+    _source_subfolder = "source_subfolder"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = "shared=False", "fPIC=True"
+    default_options = {'shared': False, 'fPIC': True}
 
     def configure(self):
         if self.settings.os == 'Windows':
@@ -32,16 +32,14 @@ class OpenALConan(ConanFile):
         source_url = "https://github.com/kcat/openal-soft"
         tools.get("{0}/archive/openal-soft-{1}.tar.gz".format(source_url, self.version), self.md5)
         extracted_dir = "openal-soft-openal-soft-" + self.version
-        os.rename(extracted_dir, self.source_subfolder)
+        os.rename(extracted_dir, self._source_subfolder)
         if self.settings.os == 'Windows':
-            tools.replace_in_file(os.path.join(self.source_subfolder, 'CMakeLists.txt'),
+            tools.replace_in_file(os.path.join(self._source_subfolder, 'CMakeLists.txt'),
                                   'CHECK_INCLUDE_FILES("windows.h;mmsystem.h" HAVE_MMSYSTEM_H -D_WIN32_WINNT=0x0502)',
                                   'CHECK_INCLUDE_FILES("windows.h;mmsystem.h" HAVE_MMSYSTEM_H)')
 
     def build(self):
         cmake = CMake(self)
-        if self.settings.compiler != 'Visual Studio':
-            cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
         cmake.definitions['LIBTYPE'] = 'SHARED' if self.options.shared else 'STATIC'
         cmake.configure()
         cmake.build()
