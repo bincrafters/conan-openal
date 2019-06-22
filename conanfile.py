@@ -44,6 +44,7 @@ class OpenALConan(ConanFile):
         cmake.definitions['ALSOFT_UTILS'] = False
         cmake.definitions['ALSOFT_EXAMPLES'] = False
         cmake.definitions['ALSOFT_TESTS'] = False
+        cmake.definitions['CMAKE_DISABLE_FIND_PACKAGE_SoundIO'] = True
         cmake.configure(build_folder=self._build_subfolder)
         return cmake
 
