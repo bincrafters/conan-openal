@@ -26,6 +26,7 @@ class OpenALConan(ConanFile):
         if self.settings.os == 'Windows':
             del self.options.fPIC
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def requirements(self):
         if self.settings.os == "Linux":
