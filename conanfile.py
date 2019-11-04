@@ -4,13 +4,11 @@ import os
 
 class OpenALConan(ConanFile):
     name = "openal"
-    version = "1.19.1"
     description = "OpenAL Soft is a software implementation of the OpenAL 3D audio API."
     topics = ("conan", "openal", "audio", "api")
     url = "http://github.com/bincrafters/conan-openal"
     homepage = "https://www.openal.org"
     license = "MIT"
-    exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
     generators = "cmake"
 
@@ -32,9 +30,7 @@ class OpenALConan(ConanFile):
             self.requires("libalsa/1.1.9")
 
     def source(self):
-        source_url = "https://github.com/kcat/openal-soft"
-        sha256 = "9f3536ab2bb7781dbafabc6a61e0b34b17edd16bd6c2eaf2ae71bc63078f98c7"
-        tools.get("{0}/archive/openal-soft-{1}.tar.gz".format(source_url, self.version), sha256=sha256)
+        tools.get(**self.conan_data["sources"][self.version])
         extracted_dir = "openal-soft-openal-soft-" + self.version
         os.rename(extracted_dir, self._source_subfolder)
 
