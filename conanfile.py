@@ -9,7 +9,6 @@ class OpenALConan(ConanFile):
     topics = ("conan", "openal", "audio", "api")
     url = "http://github.com/bincrafters/conan-openal"
     homepage = "https://www.openal.org"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
@@ -30,7 +29,7 @@ class OpenALConan(ConanFile):
 
     def requirements(self):
         if self.settings.os == "Linux":
-            self.requires("libalsa/1.1.9@conan/stable")
+            self.requires("libalsa/1.1.9")
 
     def source(self):
         source_url = "https://github.com/kcat/openal-soft"
